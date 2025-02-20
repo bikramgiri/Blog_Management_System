@@ -1,8 +1,12 @@
 import React from 'react'
+import Navbar from '../../components/navbar/Navbar'
+import Layout from '../../components/layout/Layout'
 
 const AddBlog = () => {
   return (
-    <div>AddBlog</div>
+      <Layout>
+
+      </Layout>
   )
 }
 
