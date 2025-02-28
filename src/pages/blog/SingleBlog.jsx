@@ -1,7 +1,7 @@
 // import React from 'react'
 import { useEffect, useState } from 'react'
 import Layout from '../../components/layout/Layout'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { baseUrl } from '../../config'
 import axios from 'axios'
 
@@ -14,11 +14,11 @@ const SingleBlog = () => {
       try {
         const response = await axios.delete(`${baseUrl}/blog/${id}`,{
             headers : {
-                "Authorization" : localStorage.getItem("token")
+                'Authorization' : localStorage.getItem("token")
             }
           })
           if(response.status === 200){
-            navigate("/")
+            navigate('/')
           }else{
             alert("Something  went wrong. Try again!")
           }
@@ -26,10 +26,10 @@ const SingleBlog = () => {
         alert(error?.response?.data?.message)
       }
     }
-
+    
     const fetchBlog = async ()=>{
     const response = await axios.get(`${baseUrl}/blog/${id}`)
-      if(response.status === 200){
+    if(response.status === 200){
        setBlog(response.data.data)
     }
   }
@@ -48,9 +48,10 @@ const SingleBlog = () => {
                 </div>
                 <div className="flex -mx-2 mb-4">
                     <div className="w-1/2 px-2">
-                        <Link to="/blog/edit">
-                        <button className="w-full bg-gray-900 dark:bg-gray-600 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800 dark:hover:bg-gray-700">Edit</button>
-                        </Link>
+                        {/* <Link to="/blog/edit">
+                        <button className="w-full bg-gray-900 dark:bg-gray-600 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800 dark:hover:bg-gray-700" onClick={()=>navigate(`/blog/edit/${blog.id}`)}>Edit</button>
+                        </Link> */}
+                        <button className="w-full bg-gray-900 dark:bg-gray-600 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800 dark:hover:bg-gray-700" onClick={()=>navigate(`/blog/edit/${blog._id}`)}>Edit</button>
                     </div>
                     <div className="w-1/2 px-2">
                         <button className="w-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white py-2 px-4 rounded-full font-bold hover:bg-gray-300 dark:hover:bg-gray-600" onClick={deleteBlog}>Delete</button>
